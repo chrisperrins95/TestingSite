@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title>Wait test</title>
+    <style>
+        .centre {
+            text-align: center;
+        }
+        h1 {
+            font-family: sans-serif;
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="centre" id="QaLogo" style="opacity: 0">
+    <img src="QA-Consulting-Logo.jpg">
+    </div> 
+
+    <div id="quote" style="text-align: center; position: relative; top: -200px; opacity: 0">
+        <h1 id="quote2"></h1>
+    </div>
+
+<script>
+    function fadeIn(image) {
+    var itemVisible = true;
+    var fading = setInterval(fader, 10);
+    function fader() {
+        image.style.opacity = parseFloat(image.style.opacity) + 0.005;
+        if (image.style.opacity >= 1) {
+            clearInterval(fading);
+        }
+    }
+}
+
+function fadeInOut(image, WaitTime) {
+    var itemVisible = true;
+    var fading = setInterval(fader, 10);
+    function fader() {
+        image.style.opacity = parseFloat(image.style.opacity) + 0.005;
+        if (image.style.opacity >= 1) {
+            clearInterval(fading);
+            wait(WaitTime, fadeOut, image);
+        }
+    }
+}
+
+function fadeOut(image) {
+    var itemVisible = true;
+    var fading = setInterval(fader, 10);
+    function fader() {
+        image.style.opacity = parseFloat(image.style.opacity) - 0.005;
+        if (image.style.opacity <= 0) {
+            clearInterval(fading);
+        }
+    } 
+}
+
+function insert() {
+    document.getElementById("quote").innerHTML= "<h1>I HATE YOU!<br></h1><h2>-The Shafeeq</h2>";
+}
+
+function wait(time, postEvent, parameter1, parameter2, parameter3) {
+    var counter = 0;
+    var waiter = setInterval(function() {
+            console.log(counter);
+            clearInterval(waiter);
+            postEvent(parameter1, parameter2, parameter3);
+    }, time);
+}
+</script>
+<script>
+fadeInOut(document.getElementById("QaLogo"), 1000);
+wait(5000, insert);
+wait(5100, fadeIn, document.getElementById("quote"));
+</script>
+</body>
+</html>
