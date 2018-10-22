@@ -37,7 +37,7 @@ public class App {
 		public void deleteMethod() {
 			RequestSpecification request = RestAssured.given();
 			
-			Response response = request.delete("http://localhost:8080/accounts/50");
+			Response response = request.delete("http://localhost:8080/accounts/51");
 			
 			response.then().statusCode(200);
 		}

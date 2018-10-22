@@ -11,13 +11,22 @@ public class App {
 	public static void main(String[] args) {
 		getMethod();
 		postMethod();
-		deleteMethod();
+//		deleteMethod();
 	}
 	
 	public static void getMethod () {
 	RequestSpecification request = RestAssured.given();
 	Response response = request.get("http://localhost:8080/accounts");
 	response.prettyPrint();
+	}
+	
+	public static void deleteMethod() {
+		RequestSpecification request = RestAssured.given();
+		
+		Response response = request.delete("http://localhost:8080/accounts/39");
+		
+		System.out.println(response.getStatusCode());
+
 	}
 	
 	public static void postMethod() {
@@ -38,12 +47,5 @@ public class App {
 		
 	}
 	
-	public static void deleteMethod() {
-		RequestSpecification request = RestAssured.given();
-		
-		Response response = request.delete("http://localhost:8080/accounts/39");
-		
-		System.out.println(response.getStatusCode());
-
-	}
+	
 }
